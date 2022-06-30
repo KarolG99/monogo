@@ -8,7 +8,7 @@ const CharactersList = () => {
 
   return (
     <Wrapper>
-      sds
+      <h1>All Characters</h1>
       <SingleCharacter
         id={character.id}
         name={character.name}
