@@ -11,16 +11,16 @@ import Page404 from "./components/Page404/Page404";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <StyledMain>
-        <Routes>
-          <Route path="*" element={<Page404 />} />
-          <Route path="/" element={<CharactersList />} />
-        </Routes>
-      </StyledMain>
-      <Navigation />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <StyledMain>
+          <Routes>
+            <Route path="*" element={<Page404 />} />
+            <Route path="/" element={<CharactersList />} />
+          </Routes>
+        </StyledMain>
+        <Navigation />
+      </ThemeProvider>
   );
 }
 
