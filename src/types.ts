@@ -7,6 +7,7 @@ export type SingleCharacterProps = {
 
 // usePeople.ts
 export type IPeople = {
+  count?: number;
   next?: string;
   previous?: string;
   results: {
