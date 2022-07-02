@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { IPeople } from "../types";
+import { IPeople, SingleCharacterProps } from "../types";
 
 export const usePeople = (url: string) => {
   const [data, setData] = useState<IPeople>();
+  const [singleCharacter, setSingleCharacter] = useState<SingleCharacterProps>();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -13,6 +14,7 @@ export const usePeople = (url: string) => {
         const response = await fetch(url);
         const json = await response.json();
         setData(json);
+        setSingleCharacter(json);
       } catch {
         setErrorMessage("Coś poszło nie tak, spróbuj odświeżyć stronę");
       }
@@ -22,5 +24,5 @@ export const usePeople = (url: string) => {
     fetchPeople();
   }, [url]);
 
-  return { data, isLoading, errorMessage };
+  return { data, singleCharacter, isLoading, errorMessage };
 };

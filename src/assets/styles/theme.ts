@@ -5,8 +5,9 @@ export const theme = {
     primaryRgba: "rgba(19, 28, 42, 0.65)",
     secondary: "#f9f871",
     red: "#BB5B3E",
+    green: "#9BDE7E",
     secondaryGradient:
-      "background: -webkit-linear-gradient(#f9f871, #b8e067); -webkit-background-clip: text; -webkit-text-fill-color: transparent;",
+      "-webkit-linear-gradient(#f9f871, #b8e067); -webkit-background-clip: text; -webkit-text-fill-color: transparent;",
   },
   boxShadow: {
     singleCharacter:

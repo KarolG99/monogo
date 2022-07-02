@@ -5,22 +5,24 @@ import { ThemeProvider } from "styled-components";
 import { StyledMain } from "./App.styles";
 import { GlobalStyle } from "./assets/styles/GlobalStyle";
 import { theme } from "./assets/styles/theme";
+import CharacterDetail from "./components/CharacterDetail/CharacterDetail";
 import CharactersList from "./components/CharactersList/CharactersList";
 import Navigation from "./components/Navigation/Navigation";
 import Page404 from "./components/Page404/Page404";
 
 function App() {
   return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <StyledMain>
-          <Routes>
-            <Route path="*" element={<Page404 />} />
-            <Route path="/" element={<CharactersList />} />
-          </Routes>
-        </StyledMain>
-        <Navigation />
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <StyledMain>
+        <Routes>
+          <Route path="/" element={<CharactersList />} />
+          <Route path="/:id" element={<CharacterDetail />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </StyledMain>
+      <Navigation />
+    </ThemeProvider>
   );
 }
 

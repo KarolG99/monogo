@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type WrapperProps = {
+  isSpecific?: boolean;
+};
+
 export const Wrapper = styled.div`
   z-index: -1;
   color: ${({ theme }) => theme.colors.white};
@@ -7,11 +11,12 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: ${({isSpecific = false}: WrapperProps) => isSpecific && "15vh"};
 
   h1 {
     font-size: 2.5rem;
     font-weight: 900;
-    ${({ theme }) => theme.colors.secondaryGradient};
+    background: ${({ theme }) => theme.colors.secondaryGradient};
   }
 `;
 
@@ -23,23 +28,12 @@ export const DataWrapper = styled.article`
 
 export const ButtonsWrapper = styled.div`
   width: 100%;
-  max-width: 500px;
+  max-width: 300px;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   button {
-    cursor: pointer;
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.secondary};
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    border-radius: ${({ theme }) => theme.borderRadius.small};
-    font-size: 1rem;
-    border: 1px solid ${({ theme }) => theme.colors.secondary};
     &.prev {
       span {
         margin-left: 5px;
@@ -55,6 +49,20 @@ export const ButtonsWrapper = styled.div`
       }
     }
   }
+`;
+
+export const StyledButton = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.secondary};
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  font-size: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 export const StyledNumberOfPage = styled.div`

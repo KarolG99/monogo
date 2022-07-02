@@ -4,6 +4,7 @@ import SingleCharacter from "../SingleCharacter/SingleCharacter";
 import {
   ButtonsWrapper,
   DataWrapper,
+  StyledButton,
   StyledNumberOfPage,
   Wrapper,
 } from "./CharactersList.styles";
@@ -40,22 +41,25 @@ const CharactersList = () => {
 
       <DataWrapper>
         {data &&
-          data.results.map((character) => (
-            <SingleCharacter
-              key={character.name}
-              name={character.name}
-              birth_year={character.birth_year}
-              gender={character.gender}
-            />
-          ))}
+          data.results.map((character) => {
+            return (
+              <SingleCharacter
+                key={character.name}
+                name={character.name}
+                birth_year={character.birth_year}
+                gender={character.gender}
+                number={character.url?.match(/(\d+)/)?.at(0)}
+              />
+            );
+          })}
       </DataWrapper>
 
       <ButtonsWrapper>
         {counter > 1 && (
-          <button className="prev" onClick={() => togglePage("subtract")}>
+          <StyledButton className="prev" onClick={() => togglePage("subtract")}>
             <ArrowIcon />
             <span>Prev</span>
-          </button>
+          </StyledButton>
         )}
 
         <StyledNumberOfPage>
@@ -71,9 +75,9 @@ const CharactersList = () => {
         </StyledNumberOfPage>
 
         {counter < 9 && (
-          <button className="next" onClick={() => togglePage("add")}>
+          <StyledButton className="next" onClick={() => togglePage("add")}>
             <span>Next</span> <ArrowIcon />
-          </button>
+          </StyledButton>
         )}
       </ButtonsWrapper>
     </Wrapper>
