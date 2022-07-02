@@ -14,3 +14,7 @@ export const Wrapper = styled.article`
     ${({ theme }) => theme.colors.secondaryGradient};
   }
 `;
+
+export const ButtonsWrapper = styled.div`
+
+`;
