@@ -16,9 +16,9 @@ function App() {
       <GlobalStyle />
       <StyledMain>
         <Routes>
-          <Route path="/" element={<CharactersList />} />
-          <Route path="/:id" element={<CharacterDetail />} />
           <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<CharactersList />} />
+          <Route path="character/:id" element={<CharacterDetail />} />
         </Routes>
       </StyledMain>
       <Navigation />

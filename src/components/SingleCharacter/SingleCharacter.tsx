@@ -2,7 +2,7 @@ import React from "react";
 
 import { SingleCharacterProps } from "../../types";
 import { ArrowIcon } from "../ArrowIcon.styles";
-import { SingleCharacterWrapper, StyledLink } from "./SingleCharacter.styles";
+import { HeartOutlineIcon, SingleCharacterWrapper, StyledLink } from "./SingleCharacter.styles";
 
 const SingleCharacter = ({
   name,
@@ -17,6 +17,7 @@ const SingleCharacter = ({
 }: SingleCharacterProps) => {
   return (
     <SingleCharacterWrapper>
+      <HeartOutlineIcon />
       <p>
         Name: <span>{name}</span>
       </p>
@@ -42,9 +43,12 @@ const SingleCharacter = ({
           </p>
         </>
       )}
-      <StyledLink to={`/${number}`}>
-        More info <ArrowIcon />
-      </StyledLink>
+
+      {!isSpecific && (
+        <StyledLink to={`character/${number}`}>
+          More info <ArrowIcon />
+        </StyledLink>
+      )}
     </SingleCharacterWrapper>
   );
 };
