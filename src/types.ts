@@ -1,3 +1,5 @@
+import React from "react";
+
 // SingleCharacter.tsx
 export type SingleCharacterProps = {
   name: string;
@@ -10,6 +12,7 @@ export type SingleCharacterProps = {
   height?: string;
   number?: unknown;
   isSpecific?: boolean;
+  onClick?: React.MouseEventHandler;
 };
 
 // usePeople.ts
@@ -35,4 +38,22 @@ export type StatusInfoProps = {
   isLoading?: boolean;
   isError?: boolean;
   errorMessage?: string;
+};
+
+// favCharacters-store
+export type IFavCharacters = {
+  favCharacters: {
+    url: any;
+    name: string;
+    birth_year: string;
+    gender: string;
+    hair_color?: string;
+    skin_color?: string;
+    eye_color?: string;
+    mass?: string;
+    height?: string;
+    number?: unknown;
+    isSpecific?: boolean;
+    onClick?: React.MouseEventHandler;
+  }[];
 };

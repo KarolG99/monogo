@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {ReactComponent as HeartOutline} from '../../assets/icons/heart-outline.svg';
-import {ReactComponent as HeartSolid} from '../../assets/icons/heart-solid.svg';
+import { ReactComponent as HeartOutline } from "../../assets/icons/heart-outline.svg";
+import { ReactComponent as HeartSolid } from "../../assets/icons/heart-solid.svg";
 
 export const SingleCharacterWrapper = styled.section`
   width: 90%;
@@ -19,6 +19,15 @@ export const SingleCharacterWrapper = styled.section`
       font-weight: 900;
       letter-spacing: 0.5px;
     }
+  }
+
+  button {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    border: none;
   }
 `;
 
@@ -39,8 +48,8 @@ export const StyledLink = styled(Link)`
 
 export const HeartOutlineIcon = styled(HeartOutline)`
   fill: ${({ theme }) => theme.colors.pink};
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+`;
+
+export const HeartSolidIcon = styled(HeartSolid)`
+  fill: ${({ theme }) => theme.colors.pink};
 `;

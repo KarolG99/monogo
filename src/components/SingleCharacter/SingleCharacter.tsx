@@ -1,8 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-import { SingleCharacterProps } from "../../types";
+import { IFavCharacters, SingleCharacterProps } from "../../types";
 import { ArrowIcon } from "../ArrowIcon.styles";
-import { HeartOutlineIcon, SingleCharacterWrapper, StyledLink } from "./SingleCharacter.styles";
+import {
+  HeartOutlineIcon,
+  HeartSolidIcon,
+  SingleCharacterWrapper,
+  StyledLink,
+} from "./SingleCharacter.styles";
 
 const SingleCharacter = ({
   name,
@@ -14,10 +20,21 @@ const SingleCharacter = ({
   mass,
   height,
   isSpecific,
+  onClick,
 }: SingleCharacterProps) => {
+  const favCharacters = useSelector(
+    (state: IFavCharacters) => state.favCharacters
+  );
+
   return (
     <SingleCharacterWrapper>
-      <HeartOutlineIcon />
+      <button>
+        {!favCharacters.find((el: any) => el.character.name === name) ? (
+          <HeartOutlineIcon onClick={onClick} />
+        ) : (
+          <HeartSolidIcon onClick={onClick} />
+        )}
+      </button>
       <p>
         Name: <span>{name}</span>
       </p>

@@ -11,11 +11,20 @@ import {
 import { usePeople } from "../../hooks/usePeople";
 import StatusInfo from "../StatusInfo/StatusInfo";
 import { ArrowIcon } from "../ArrowIcon.styles";
+import { useSelector } from "react-redux";
+import { IFavCharacters, SingleCharacterProps } from "../../types";
+import { useDispatch } from "react-redux";
+import { addCharacter, removeCharacter } from "../../store";
 
 const CharactersList = () => {
   const [counter, setCounter] = useState(1);
   let url = `https://swapi.dev/api/people/?page=${counter}`;
   const { data, isLoading, errorMessage } = usePeople(url);
+  const [searchValue, setSearchValue] = useState("");
+  const favCharacters = useSelector(
+    (state: IFavCharacters) => state.favCharacters
+  );
+  const dispatch = useDispatch();
   let numberOfPage = 0;
 
   if (data?.count) {
@@ -32,6 +41,28 @@ const CharactersList = () => {
     }
   };
 
+  const handleToggleFavCharacters = (character: SingleCharacterProps) => {
+    if (
+      !favCharacters.find((el: any) => el.character.name === character.name)
+    ) {
+      dispatch(
+        addCharacter({
+          character,
+        })
+      );
+    } else {
+      dispatch(
+        removeCharacter({
+          character,
+        })
+      );
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <Wrapper>
       <h1>All Characters</h1>
@@ -39,8 +70,35 @@ const CharactersList = () => {
       {isLoading && !errorMessage && <StatusInfo isLoading />}
       {errorMessage && <StatusInfo isError errorMessage={errorMessage} />}
 
+      <label htmlFor="search">Search by name</label>
+      <input
+        type="text"
+        id="search"
+        value={searchValue}
+        name="search"
+        placeholder="e.g. Luke Skywalker"
+        onChange={handleInputChange}
+      />
+
+      {searchValue &&
+        data &&
+        data.results.map((character) => {
+          if (character.name.toLocaleLowerCase().includes(searchValue))
+            return (
+              <SingleCharacter
+                key={character.name}
+                name={character.name}
+                birth_year={character.birth_year}
+                gender={character.gender}
+                number={character.url?.match(/(\d+)/)?.at(0)}
+                onClick={() => handleToggleFavCharacters(character)}
+              />
+            );
+        })}
+
       <DataWrapper>
         {data &&
+          !searchValue &&
           data.results.map((character) => {
             return (
               <SingleCharacter
@@ -49,6 +107,7 @@ const CharactersList = () => {
                 birth_year={character.birth_year}
                 gender={character.gender}
                 number={character.url?.match(/(\d+)/)?.at(0)}
+                onClick={() => handleToggleFavCharacters(character)}
               />
             );
           })}

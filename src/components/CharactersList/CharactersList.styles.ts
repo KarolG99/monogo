@@ -11,12 +11,36 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: ${({isSpecific = false}: WrapperProps) => isSpecific && "15vh"};
+  padding-top: ${({ isSpecific = false }: WrapperProps) =>
+    isSpecific && "15vh"};
 
   h1 {
     font-size: 2.5rem;
     font-weight: 900;
     background: ${({ theme }) => theme.colors.secondaryGradient};
+  }
+
+  label {
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.colors.green};
+    font-weight: 700;
+    margin: 10px;
+  }
+
+  input {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
+    margin-bottom: 20px;
+    color: ${({ theme }) => theme.colors.green};
+
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.green};
+      opacity: 0.7;
+      font-style: italic;
+    }
   }
 `;
 

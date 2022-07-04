@@ -10,7 +10,7 @@ const Navigation = () => {
       <StyledLink to="/" ref={NavLinkRef}>
         All
       </StyledLink>
-      <StyledLink to="/fav" ref={NavLinkRef}>
+      <StyledLink to="/favourites" ref={NavLinkRef}>
         Favourite
       </StyledLink>
     </StyledNavigation>
