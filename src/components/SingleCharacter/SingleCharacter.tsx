@@ -20,7 +20,8 @@ const SingleCharacter = ({
   mass,
   height,
   isSpecific,
-  onClick,
+  handleAddToFav,
+  handleRemoveFormFav,
 }: SingleCharacterProps) => {
   const favCharacters = useSelector(
     (state: IFavCharacters) => state.favCharacters
@@ -30,12 +31,12 @@ const SingleCharacter = ({
     <SingleCharacterWrapper>
       <button>
         {!favCharacters.find((el: any) => el.character.name === name) ? (
-          <HeartOutlineIcon onClick={onClick} />
+          <HeartOutlineIcon onClick={handleAddToFav} />
         ) : (
-          <HeartSolidIcon onClick={onClick} />
+          <HeartSolidIcon onClick={handleRemoveFormFav} />
         )}
       </button>
-      <p>
+      <p className="name">
         Name: <span>{name}</span>
       </p>
       <p>

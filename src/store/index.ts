@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice, configureStore, current } from "@reduxjs/toolkit";
 import { SingleCharacterProps } from "../types";
 
 const initialFavCharacterState: SingleCharacterProps[] = [];
@@ -13,7 +13,7 @@ const favCharacterSlice = createSlice({
       });
     },
     removeCharacter(state, action) {
-      return state.filter(
+      return current(state).filter(
         (character) => character.name !== action.payload.name
       );
     },

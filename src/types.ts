@@ -12,7 +12,8 @@ export type SingleCharacterProps = {
   height?: string;
   number?: unknown;
   isSpecific?: boolean;
-  onClick?: React.MouseEventHandler;
+  handleAddToFav?: React.MouseEventHandler;
+  handleRemoveFormFav?: React.MouseEventHandler;
 };
 
 // usePeople.ts

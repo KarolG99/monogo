@@ -14,7 +14,7 @@ import { ArrowIcon } from "../ArrowIcon.styles";
 import { useSelector } from "react-redux";
 import { IFavCharacters, SingleCharacterProps } from "../../types";
 import { useDispatch } from "react-redux";
-import { addCharacter, removeCharacter } from "../../store";
+import { addCharacter } from "../../store";
 
 const CharactersList = () => {
   const [counter, setCounter] = useState(1);
@@ -25,8 +25,8 @@ const CharactersList = () => {
     (state: IFavCharacters) => state.favCharacters
   );
   const dispatch = useDispatch();
-  let numberOfPage = 0;
 
+  let numberOfPage = 0;
   if (data?.count) {
     numberOfPage = Math.ceil(data.count / data.results.length);
   }
@@ -41,18 +41,12 @@ const CharactersList = () => {
     }
   };
 
-  const handleToggleFavCharacters = (character: SingleCharacterProps) => {
+  const handleAddToFav = (character: SingleCharacterProps) => {
     if (
       !favCharacters.find((el: any) => el.character.name === character.name)
     ) {
       dispatch(
         addCharacter({
-          character,
-        })
-      );
-    } else {
-      dispatch(
-        removeCharacter({
           character,
         })
       );
@@ -67,9 +61,6 @@ const CharactersList = () => {
     <Wrapper>
       <h1>All Characters</h1>
 
-      {isLoading && !errorMessage && <StatusInfo isLoading />}
-      {errorMessage && <StatusInfo isError errorMessage={errorMessage} />}
-
       <label htmlFor="search">Search by name</label>
       <input
         type="text"
@@ -79,6 +70,9 @@ const CharactersList = () => {
         placeholder="e.g. Luke Skywalker"
         onChange={handleInputChange}
       />
+
+      {isLoading && !errorMessage && <StatusInfo isLoading />}
+      {errorMessage && <StatusInfo isError errorMessage={errorMessage} />}
 
       {searchValue &&
         data &&
@@ -91,7 +85,7 @@ const CharactersList = () => {
                 birth_year={character.birth_year}
                 gender={character.gender}
                 number={character.url?.match(/(\d+)/)?.at(0)}
-                onClick={() => handleToggleFavCharacters(character)}
+                handleAddToFav={() => handleAddToFav(character)}
               />
             );
         })}
@@ -107,7 +101,7 @@ const CharactersList = () => {
                 birth_year={character.birth_year}
                 gender={character.gender}
                 number={character.url?.match(/(\d+)/)?.at(0)}
-                onClick={() => handleToggleFavCharacters(character)}
+                handleAddToFav={() => handleAddToFav(character)}
               />
             );
           })}

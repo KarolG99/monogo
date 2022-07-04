@@ -19,6 +19,10 @@ export const SingleCharacterWrapper = styled.section`
       font-weight: 900;
       letter-spacing: 0.5px;
     }
+
+    &.name {
+      margin-right: 40px;
+    }
   }
 
   button {
